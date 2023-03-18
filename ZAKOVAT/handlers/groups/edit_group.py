@@ -8,7 +8,7 @@ from filters.admins import AdminFilter
 from loader import dp, bot
 
 
-@dp.message_handler(IsGroup(), Command("set_photo", prefixes="!/"), AdminFilter())
+@dp.message_handler(AdminFilter(), IsGroup(), Command("set_photo", prefixes="!/"))
 async def set_new_photo(message: types.Message):
     source_message = message.reply_to_message
     photo = source_message.photo[-1]
@@ -18,7 +18,7 @@ async def set_new_photo(message: types.Message):
     await message.chat.set_photo(photo=input_file)
 
 
-@dp.message_handler(IsGroup(), Command("set_title", prefixes="!/"), AdminFilter())
+@dp.message_handler(AdminFilter(), IsGroup(), Command("set_title", prefixes="!/"))
 async def set_new_title(message: types.Message):
     source_message = message.reply_to_message
     title = source_message.text
@@ -26,7 +26,7 @@ async def set_new_title(message: types.Message):
     await bot.set_chat_title(message.chat.id, title=title)
 
 
-@dp.message_handler(IsGroup(), Command("set_description", prefixes="!/"), AdminFilter())
+@dp.message_handler(AdminFilter(), IsGroup(), Command("set_description", prefixes="!/"))
 async def set_new_description(message: types.Message):
     source_message = message.reply_to_message
     description = source_message.text

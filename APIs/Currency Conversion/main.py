@@ -9,4 +9,4 @@ response = requests.get(url)
 jsondata = response.json()
 # Your JSON object
 kurs = response.json()['conversion_rate']
-print(f"Bugungi kurs: \n1AQSH dollari = {kurs} sum")
+print(f"Bugungi kurs: \n1 AQSH dollari = {kurs} sum")

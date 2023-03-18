@@ -2,7 +2,8 @@ import logging
 from aiogram.utils.exceptions import (Unauthorized, InvalidQueryID, TelegramAPIError,
                                       CantDemoteChatCreator, MessageNotModified, MessageToDeleteNotFound,
                                       MessageTextIsEmpty, RetryAfter,
-                                      CantParseEntities, MessageCantBeDeleted)
+                                      CantParseEntities, MessageCantBeDeleted,
+                                      TerminatedByOtherGetUpdates)
 
 
 from loader import dp
@@ -20,6 +21,10 @@ async def errors_handler(update, exception):
 
     if isinstance(exception, CantDemoteChatCreator):
         logging.exception("Can't demote chat creator")
+        return True
+
+    if isinstance(exception, TerminatedByOtherGetUpdates):
+        logging.exception("############    2ta bot ishlayapti    ##########")
         return True
 
     if isinstance(exception, MessageNotModified):
